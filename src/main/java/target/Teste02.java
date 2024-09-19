@@ -3,27 +3,32 @@ package target;
 import java.util.Scanner;
 
 public class Teste02 {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Informe uma string: ");
-        String input = scanner.nextLine();
+        System.out.print("Informe um número: ");
+        int number = scanner.nextInt();
         scanner.close();
 
-        int count = countOccurrencesOfA(input);
-        if (count > 0) {
-            System.out.println("A letra 'a' aparece " + count + " vezes na string.");
+        if (isFibonacci(number)) {
+            System.out.println("O número " + number + " pertence à sequência de Fibonacci.");
         } else {
-            System.out.println("A letra 'a' não aparece na string.");
+            System.out.println("O número " + number + " não pertence à sequência de Fibonacci.");
         }
     }
 
-    public static int countOccurrencesOfA(String input) {
-        int count = 0;
-        for (char c : input.toCharArray()) {
-            if (c == 'a' || c == 'A') {
-                count++;
-            }
+    public static boolean isFibonacci(int number) {
+        if (number < 0) {
+            return false;
         }
-        return count;
+        int a = 0;
+        int b = 1;
+        while (a < number) {
+            int temp = a;
+            a = b;
+            b = temp + b;
+        }
+        return a == number;
     }
 }
+
